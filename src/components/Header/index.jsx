@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,38 +16,33 @@ const Header = () => {
   return (
     <>
       {/* Sticky Header Top Bar */}
-      <header className="sticky top-0 z-40 w-full border-b border-gray-200 bg-white shadow-sm">
+      <header className="sticky top-0 z-40 w-full border-b border-blue-900 bg-blue-950 shadow-sm">
         <div className="mx-auto flex max-w-screen-xl items-center justify-between p-4 relative">
 
           {/* 1. Brand Logo / Name (Left side) */}
-          <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse z-10">
-            <span className="self-center whitespace-nowrap text-xl font-bold text-gray-900 sm:text-2xl">
+          <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse z-10">
+            <span className="self-center whitespace-nowrap text-xl font-bold text-gray-100 sm:text-2xl">
               My Portfolio
             </span>
-          </a>
+          </Link>
 
           {/* 2. Desktop Navigation Links (Centered using absolute positioning on lg screens) */}
           <nav className="hidden lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:flex items-center">
             <ul className="flex flex-row space-x-8 font-medium text-sm rtl:space-x-reverse">
               <li>
-                <a href="#" className="text-blue-700 hover:text-blue-700" aria-current="page">
+                <Link to="/" className="text-gray-100 hover:text-yellow-400" aria-current="page">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-900 hover:text-blue-700">
-                  Company
-                </a>
+                <Link to="/about" className="text-gray-100 hover:text-yellow-400">
+                  About
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-900 hover:text-blue-700">
-                  Team
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-900 hover:text-blue-700">
-                  Features
-                </a>
+                <Link to="/contact" className="text-gray-100 hover:text-yellow-400">
+                  Contact
+                </Link>
               </li>
             </ul>
           </nav>
@@ -55,33 +51,32 @@ const Header = () => {
           <div className="hidden lg:flex items-center space-x-4 rtl:space-x-reverse z-10">
             {!isAuth ? (
               <>
-                <a
-                  href="#"
-                  className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-100"
+                <Link
+                  to="/auth/login"
+                  className="rounded-lg bg-gray-50 border border-gray-100 px-4 py-2 text-sm font-medium text-gray-800 transition hover:bg-gray-200"
                 >
                   Login
-                </a>
-                <a
-                  href="#"
-                  className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                </Link>
+                <Link
+                  to="/register"
+                  className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300"
                 >
                   Register
-                </a>
+                </Link>
               </>
             ) : (
               <>
-                <a
-                  href="#"
-                  className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-100"
+                <Link
+                  to="/dashboard/home"
+                  className="rounded-lg border bg-gray-100 border-gray-300 px-4 py-2 text-sm font-medium text-gray-800 transition hover:bg-gray-200"
                 >
                   Dashboard
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <button
                   className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300"
                 >
                   Logout
-                </a>
+                </button>
               </>
             )}
           </div>
@@ -90,7 +85,7 @@ const Header = () => {
           <button
             onClick={toggleDrawer}
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden z-10"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-100 hover:bg-gray-200 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden z-10"
             aria-controls="drawer-navigation"
             aria-expanded={isOpen}
           >
@@ -114,14 +109,13 @@ const Header = () => {
       {/* Side Drawer Menu for sm & md screens (Opens from Left side) */}
       <aside
         id="drawer-navigation"
-        className={`fixed top-0 left-0 z-50 h-screen w-72 bg-white p-6 shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
+        className={`fixed top-0 left-0 z-50 h-screen w-72 bg-white p-6 shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${isOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
         tabIndex="-1"
       >
         {/* Drawer Header */}
         <div className="flex items-center justify-between border-b border-gray-100 pb-4">
-          <span className="text-lg font-bold text-gray-900">My Portfolio</span>
+          <Link to="/" className="text-lg font-bold text-gray-900">My Portfolio</Link>
           <button
             onClick={closeDrawer}
             type="button"
@@ -136,45 +130,36 @@ const Header = () => {
 
         {/* Drawer Body: Navigation Items & Buttons */}
         <div className="flex h-full flex-col justify-between py-6">
-          
+
           {/* Navigation Links List */}
           <ul className="space-y-3 font-medium text-base">
             <li>
-              <a
-                href="#"
+              <Link
+                to="/"
                 onClick={closeDrawer}
                 className="block rounded-lg bg-blue-50 px-4 py-2.5 text-blue-700 font-semibold"
                 aria-current="page"
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/about"
                 onClick={closeDrawer}
                 className="block rounded-lg px-4 py-2.5 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
               >
-                Company
-              </a>
+                About
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/contact"
                 onClick={closeDrawer}
                 className="block rounded-lg px-4 py-2.5 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
               >
-                Team
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                onClick={closeDrawer}
-                className="block rounded-lg px-4 py-2.5 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-              >
-                Features
-              </a>
+                Contact
+              </Link>
             </li>
           </ul>
 
@@ -182,37 +167,36 @@ const Header = () => {
           <div className="border-t border-gray-100 pt-6 space-y-3 mb-10">
             {!isAuth ? (
               <>
-                <a
-                  href="#"
+                <Link
+                  to="/auth/login"
                   onClick={closeDrawer}
                   className="block w-full rounded-lg border border-gray-300 px-4 py-2.5 text-center text-sm font-medium text-gray-700 transition hover:bg-gray-100"
                 >
                   Login
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to="/auth/register"
                   onClick={closeDrawer}
                   className="block w-full rounded-lg bg-blue-600 px-4 py-2.5 text-center text-sm font-medium text-white transition hover:bg-blue-700"
                 >
                   Register
-                </a>
+                </Link>
               </>
             ) : (
               <>
-                <a
-                  href="#"
+                <Link
+                  to="/dashboard/home"
                   onClick={closeDrawer}
                   className="block w-full rounded-lg border border-gray-300 px-4 py-2.5 text-center text-sm font-medium text-gray-700 transition hover:bg-gray-100"
                 >
                   Dashboard
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <button
                   onClick={closeDrawer}
                   className="block w-full rounded-lg bg-red-600 px-4 py-2.5 text-center text-sm font-medium text-white transition hover:bg-red-700"
                 >
                   Logout
-                </a>
+                </button>
               </>
             )}
           </div>
