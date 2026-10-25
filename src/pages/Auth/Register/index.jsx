@@ -25,7 +25,7 @@ const Register = () => {
   }
 
   return (
-    <main className='auth bg-blue-950 flex justify-center items-center py-3 px-2'>
+    <main className='auth bg-blue-950 flex justify-center items-center py-5 px-2'>
       <div className="card max-w-120 bg-gray-100 p-4 rounded-2xl">
         <div className='text-center mb-4'>
           <h1 className='text-center text-2xl font-bold'>Create A New Account</h1>
@@ -69,12 +69,20 @@ const Register = () => {
               </Item>
             </Col>
             <Col span={24}>
-              <Item label={
-                <span className='font-semibold'>
-                  Upload Image
-                </span>
-              }>
-                <Input type="file" accept='/images/*' className='bg-gray-400' size='large' name='file' />
+              <Item
+                label={
+                  <span className="font-semibold text-gray-700">
+                    Upload Image
+                  </span>
+                }
+              >
+                <Input
+                  type="file"
+                  accept="image/*"
+                  name="file"
+                  size="large"
+                  className="cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-600 file:mr-4 file:rounded-md file:border-0 file:bg-blue-950 file:px-4 file:py-2 file:text-sm file:font-medium file:text-white hover:file:bg-blue-900"
+                />
               </Item>
             </Col>
             <Col span={24}>
